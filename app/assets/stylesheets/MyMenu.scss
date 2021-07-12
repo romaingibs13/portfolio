@@ -1,0 +1,19 @@
+.sidebar {
+   display: flex;
+   flex-direction: column;
+
+   width: 10%;
+   background-color: darkslategrey; 
+   height: 100%;
+	 opacity: 0.9;
+
+   a {
+    margin: 32px auto;
+    color: white;
+    text-decoration: none ;
+   }
+
+	h1 {
+		margin: 32px;
+	}
+}
