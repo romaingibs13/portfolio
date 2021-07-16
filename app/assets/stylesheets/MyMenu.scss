@@ -1,16 +1,19 @@
 .sidebar {
    display: flex;
    flex-direction: column;
-
-   width: 10%;
-   background-color: darkslategrey; 
+   max-width: 200px;
+   width: 100%;
+   background-color: darkslategrey;
    height: 100%;
-	 opacity: 0.9;
+   opacity: 0.9;
 
-   a {
-    margin: 32px auto;
-    color: white;
-    text-decoration: none ;
+   button {
+      margin: 44px 8px;
+      color: white;
+      background-color: transparent;
+      text-decoration: none;
+      text-align: center;
+      border: transparent;   
    }
 
 	h1 {

@@ -1,15 +1,9 @@
 .container {
-    background-image: url('/assets/background2.jpeg');
+    background-image: url(/assets/background2.jpeg);
     background-size: cover;
-    height:100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 10% 90%;
     align-items: center;
-}
-
-img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 801px;
+    overflow: auto;
 }

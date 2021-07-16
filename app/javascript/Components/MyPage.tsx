@@ -1,65 +1,33 @@
 import * as React from 'react';
 import MyCalendar from './MyCalendar';
+import MyDescription from './MyDescription';
+import MyHome from './MyHome';
 import MyMenu from './MyMenu';
 
 interface MyPageProps {
 
 }
 
-enum Location {
-  ABOUT = "about",
+export enum Location {
+  HOME = "home",
   APPOINTMENT = "appointment",
-  CONTACT = "contact"
+  CONTACT = "contact",
+  ABOUTME = "about me"
 }
 
 const MyPage = (props: MyPageProps): React.ReactElement => {
-  const [location, setLocation] = React.useState(Location.ABOUT)
-  
+  const [location, setLocation] = React.useState(Location.HOME)
+  const [windowSizes, setWindowSizes] = React.useState({height: window.innerHeight, with: window.innerWidth})
+
+  React.useEffect(() =>  window.addEventListener("resize", () => setWindowSizes), []);
   return (
-    <div className="container">
-      <img height={window.screen.availHeight} width={window.screen.availWidth} src="/assets/background2.jpeg" alt="background image"/>
-      <MyMenu/>
-      {/* {location == Location.APPOINTMENT  && <MyCalendar/>} */}
-      <MyCalendar/>
+    <div style={windowSizes} className="container">
+      <MyMenu setLocation={setLocation}/>
+      {location == Location.HOME  && <MyHome/>}
+      {location == Location.APPOINTMENT  && <MyCalendar/>}
+      {location == Location.ABOUTME  && <MyDescription/>}
     </div>
   );
-}
-
-function resizeImage(file:File, maxWidth:number, maxHeight:number):Promise<Blob> {
-  return new Promise((resolve, reject) => {
-      let image = new Image();
-      image.src = URL.createObjectURL(file);
-      image.onload = () => {
-          let width = image.width;
-          let height = image.height;
-          
-          if (width <= maxWidth && height <= maxHeight) {
-              resolve(file);
-          }
-
-          let newWidth;
-          let newHeight;
-
-          if (width > height) {
-              newHeight = height * (maxWidth / width);
-              newWidth = maxWidth;
-          } else {
-              newWidth = width * (maxHeight / height);
-              newHeight = maxHeight;
-          }
-
-          let canvas = document.createElement('canvas');
-          canvas.width = newWidth;
-          canvas.height = newHeight;
-
-          let context = canvas.getContext('2d');
-
-          context.drawImage(image, 0, 0, newWidth, newHeight);
-
-          canvas.toBlob(resolve, file.type);
-      };
-      image.onerror = reject;
-  });
 }
 
 export default MyPage;

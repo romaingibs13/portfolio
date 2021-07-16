@@ -1,21 +1,18 @@
 import * as React from 'react';
+import { Location } from './MyPage';
 
 interface MyMenuProps {
-
-}
-
-const styles = {
-  
+  setLocation: (location: Location) => void;
 }
 
 const MyMenu = (props: MyMenuProps): React.ReactElement => {
 
   return (
     <div className="sidebar" >
-      <h1>Portfolio Menu</h1>
-      <a href="#">About Me</a>
-      <a href="#">Book an appointment</a>
-      <a href="#">Contact</a>
+      <h1>Menu</h1>
+      <button onClick={()=>props.setLocation(Location.HOME)}>Home</button>
+      <button onClick={()=>props.setLocation(Location.APPOINTMENT)} >Book an appointment</button>
+      <button onClick={()=>props.setLocation(Location.ABOUTME)}>About me</button>
     </div>
   );
 }
